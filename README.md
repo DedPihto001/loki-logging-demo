@@ -23,3 +23,14 @@ docker ps   # все три контейнера должны быть в ста
 ## Ключевая функция
 `send_log_to_loki()` в `app/main.py`: POST JSON с полями `streams[].stream`
 (метки: app, level) и `streams[].values` (пары [timestamp_ns, message]).
+
+## Скриншоты
+- `screenshots/dashboard.png` — дашборд с двумя панелями
+- `screenshots/panel-logs.png` — панель логов `{app="my_app"}`
+- `screenshots/panel-piechart.png` — распределение по уровням
+- `grafana-dashboard.json` — экспорт дашборда (можно импортировать: Dashboards → Import)
+
+## Примечание про Pie Chart
+В текущей версии Grafana pie chart корректно группирует `sum by (level) (...)`
+при типе запроса **Range** (с `legendFormat: {{level}}`); в режиме Instant
+панель показывает одну суммарную серию.
